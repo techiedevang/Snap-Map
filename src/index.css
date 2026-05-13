@@ -1,0 +1,100 @@
+:root {
+  /* Light Mode Colors */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  
+  --accent-primary: #3b82f6; /* Blue */
+  --accent-secondary: #10b981; /* Green */
+  --accent-critical: #ef4444; /* Red for pulses */
+  --accent-critical-light: rgba(239, 68, 68, 0.4);
+  
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  
+  --map-filter: none;
+}
+
+.dark {
+  /* Night Rescue (Dark Mode) Colors */
+  --bg-primary: #020617;
+  --bg-secondary: #0f172a;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  
+  --accent-primary: #60a5fa; 
+  --accent-secondary: #34d399;
+  --accent-critical: #f87171;
+  --accent-critical-light: rgba(248, 113, 113, 0.4);
+
+  --glass-bg: rgba(15, 23, 42, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  
+  --map-filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Typography Utilities */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 16px;
+}
+
+/* Urgency Pulses Animation */
+@keyframes pulse-critical {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 var(--accent-critical-light);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 15px rgba(239, 68, 68, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+.pulse-marker {
+  background-color: var(--accent-critical);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: pulse-critical 2s infinite;
+  display: inline-block;
+}
+
+/* Leaflet dark mode overrides */
+.dark .leaflet-layer,
+.dark .leaflet-control-zoom-in,
+.dark .leaflet-control-zoom-out,
+.dark .leaflet-control-attribution {
+  filter: var(--map-filter);
+}
