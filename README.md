@@ -72,6 +72,6 @@ To ensure zero downtime, the app follows a intelligent fallback logic:
 
 ### Step 1: Clone and Install
 ```bash
-git clone https://github.com/kavyabhardwaj2004/g_soln_challenge.git
-cd g_soln_challenge
+git clone https://github.com/techiedevang/Snap-Map.git
+cd Snap-Map
 npm install
